@@ -39,6 +39,7 @@
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/global_costmap$(arg sim_suffix)$(arg base_type_suffix).yaml"/>
 
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/local_costmap_plugins$(arg sim_suffix)$(arg rgbd_suffix)$(arg base_type_suffix).yaml"/>
+    <rosparam command="load" file="$(arg config_base_path)/config/base/common/voxel_layer.yaml"/>
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/local_costmap$(arg sim_suffix)$(arg base_type_suffix).yaml"/>
 
     <rosparam command="load" file="$(arg config_base_path)/config/base/global_planner/$(arg global_planner).yaml"/>
@@ -65,17 +66,6 @@
     <param if="$(arg multiple)" name="local_planner/base_frame" value="$(arg robot_namespace)/base_link"/>
   </node>
 
-  <arg name="debug_rgbd" default="false"/>
-  <group if="$(arg debug_rgbd)">
-    <node pkg="costmap_2d" type="costmap_2d_markers" name="costmap_2d_markers_global">
-      <remap from="voxel_grid" to="move_base/global_costmap/obstacle_rgbd_layer/voxel_grid"/>
-      <remap from="visualization_marker" to="voxel_grid_global_marker"/>
-    </node>
 
-    <node pkg="costmap_2d" type="costmap_2d_markers" name="costmap_2d_markers_local">
-      <remap from="voxel_grid" to="move_base/local_costmap/obstacle_rgbd_layer/voxel_grid"/>
-      <remap from="visualization_marker" to="voxel_grid_local_marker"/>
-    </node>
-  </group>
 
 </launch>

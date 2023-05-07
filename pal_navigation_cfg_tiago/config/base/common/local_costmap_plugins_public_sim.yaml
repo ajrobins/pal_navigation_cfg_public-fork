@@ -2,9 +2,11 @@
 local_costmap:
   # attention, the order and combination method matters
   plugins:
+    - name: static_layer
+      type: 'costmap_2d::StaticLayer'
     - name: obstacle_laser_layer
       type: 'costmap_2d::ObstacleLayer'
-    - name: obstacle_sonar_layer
-      type: 'range_sensor_layer::RangeSensorLayer'
+    # - name: voxel_layer
+    #   type: 'costmap_2d::VoxelLayer'
     - name: inflation_layer
       type: 'costmap_2d::InflationLayer'
